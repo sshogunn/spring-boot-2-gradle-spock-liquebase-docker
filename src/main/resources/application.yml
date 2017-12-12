@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+cloud:
+  azure:
+    storage:
+      account: searchmetadatablob
+      key: 7er9lUCw4z1tFJ7NPfqLL7WxCyoElWxlWtW2JjXfA/K4eKHKDkrTegLByDreW5FvSBDUBLQgCAjK3ynJNHsiKA==

@@ -1,0 +1,74 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.M7'
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.orctom.gradle:gradle-archetype-plugin:1.4.6.3")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.orctom.archetype"
+
+group = 'net.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+    ext {
+        spockVersion = '1.1-groovy-2.4'
+        swaggerVersion = '2.7.0'
+    }
+
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('javax.xml.bind:jaxb-api:2.3.0')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-validation')
+    compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-webflux')
+
+    //code generators
+    compileOnly('org.projectlombok:lombok')//is not supported by Java 9 yet
+
+    //swagger
+    compile("io.springfox:springfox-swagger2:${swaggerVersion}")
+    compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+
+    //database
+    runtime('org.postgresql:postgresql')
+    compile('org.liquibase:liquibase-core')
+
+    //azure
+    compile('com.microsoft.azure:azure-storage:6.1.0')
+    compile('com.fasterxml.jackson.core:jackson-core:2.9.3')
+
+    //test
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('io.projectreactor:reactor-test')
+    testCompile("org.spockframework:spock-core:${spockVersion}")
+    testCompile("org.spockframework:spock-spring:${spockVersion}")
+
+    //testing database
+    testCompile('com.ninja-squad:DbSetup:2.1.0')
+    runtime('com.h2database:h2')
+    testCompile('com.opentable.components:otj-pg-embedded:0.11.0')
+}
