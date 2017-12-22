@@ -1,23 +1,23 @@
-package net.example.template.persons.control;
+package net.example.template.persons.control.storage;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 @Getter
-public class StorageConfig {
+public class StorageConfigProps {
     private final String storageAccount;
     private final String storageKey;
 
-    public StorageConfig(
+    public StorageConfigProps(
             @Value("${cloud.azure.storage.account}") String storageAccount,
             @Value("${cloud.azure.storage.key}") String storageKey) {
         this.storageAccount = storageAccount;
         this.storageKey = storageKey;
     }
 
-    String buildConnectionString() {
+    public String buildConnectionString() {
         return String.format("DefaultEndpointsProtocol=http;AccountName=%s;AccountKey=%s", storageAccount, storageKey);
     }
 }

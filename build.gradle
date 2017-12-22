@@ -38,7 +38,10 @@ dependencies {
         swaggerVersion = '2.7.0'
     }
 
+    def withoutDefaultLogging = { exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' }
+    compile('org.springframework.boot:spring-boot-starter', withoutDefaultLogging)
     compile('org.springframework.boot:spring-boot-starter-actuator')
+    /*compile('org.springframework.boot:spring-boot-starter-log4j2')*/
     compile('javax.xml.bind:jaxb-api:2.3.0')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-hateoas')
@@ -60,6 +63,12 @@ dependencies {
     //azure
     compile('com.microsoft.azure:azure-storage:6.1.0')
     compile('com.fasterxml.jackson.core:jackson-core:2.9.3')
+    compile('com.microsoft.azure:azure-servicebus:1.1.0')
+    compile('com.microsoft.azure:applicationinsights-web:1.+')
+
+    //messaging
+    compile('org.apache.qpid:qpid-jms-client:0.28.0')
+    compile('org.springframework:spring-jms:5.0.2.RELEASE')
 
     //test
     testCompile('org.springframework.boot:spring-boot-starter-test')

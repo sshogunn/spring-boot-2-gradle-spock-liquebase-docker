@@ -1,4 +1,4 @@
-package net.example.template.persons.control;
+package net.example.template.persons.control.storage;
 
 import com.microsoft.azure.storage.CloudStorageAccount;
 import com.microsoft.azure.storage.StorageException;
@@ -13,7 +13,7 @@ public class StorageContainer {
     private final String connectionString;
     private CloudBlobContainer container;
 
-    StorageContainer(String connectionString) {
+    public StorageContainer(String connectionString) {
         this.connectionString = connectionString;
     }
 

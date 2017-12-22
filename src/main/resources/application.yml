@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: Template Example
   jpa:
     properties:
       hibernate:
@@ -10,3 +12,12 @@ cloud:
     storage:
       account: searchmetadatablob
       key: 7er9lUCw4z1tFJ7NPfqLL7WxCyoElWxlWtW2JjXfA/K4eKHKDkrTegLByDreW5FvSBDUBLQgCAjK3ynJNHsiKA==
+  messaging:
+    connectionfactory:
+      username: RootManageSharedAccessKey
+      password: Wo/TvO+ORAExMBwAvWFx5DrOwbTaj8I72Ps/85n0Vl8=
+      hostname: amqps://servicebuscheck.servicebus.windows.net/?amqp.idleTimeout=200000
+    queues:
+      profile_photo: servicebuscheck-queue
+    topics:
+      profile_photo: servicebuscheck-queue
